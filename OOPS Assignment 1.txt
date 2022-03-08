@@ -1,0 +1,131 @@
+
+
+                                                   ASSINGMENT-1[01/03/2022]
+
+1.)Static Cannot be used in local class:
+     
+     * The scope of static variable travels throught the termination of the entire program, where as for a local class its variable's are created and terminated at each call  
+     * Hence a static variable does not fit in  the scope of a local class and compiler throws an error
+
+
+2.) IMPLEMENTATION OF COPY CONSTRUCTOR 
+
+#include <iostream> 
+using namespace std; 
+class add  // class declared
+{  
+    int n1,n2,sum;
+  public:  // access specifier
+   add ()
+    {
+      cout<<"Default constructor executed";  // this is default constructor
+      n1=0,n2=0,sum=0;
+       
+     }
+    add (int a,int b)
+    {   
+      cout<<" \nPrametrized constructor executed";// this is parameterized constructor
+      n1=a,n2=b,sum=NULL;
+    }  
+    add (add &c) 
+    {   
+      cout<<"\nCopy constructor executed" ; // this is copy constructor 
+      n1=c.n1,n2=c.n2,sum=NULL;
+
+    } 
+  void addition() // method add is defined
+    { 
+      sum=n1+n2;
+      cout<<"\nThe sum is:"<<sum;
+    }
+
+}; 
+  
+int main ()  
+{  
+  int val_1,val_2,sum;
+  cout<<"Enter two values:";
+  cin>>val_1>>val_2;
+  add c1 ,c2(val_1,val_2), c3(c2);  //creating objects
+  c1.addition(); //calling method add using the objects
+  c2.addition();
+  c3.addition();
+        
+  return 0;
+  
+}  
+
+3.) IMPLEMENTATION OF OPERATOR OVERLOADING
+
+#include <iostream>
+using namespace std;
+class negative {
+   private:
+    int value;
+   public:
+    void accept() // method to get values
+ {
+        cout << "enter the number " ; 
+        cin>>value;
+    }
+    void operator - () //operator overloaded  
+{
+        value= -value;
+     
+    }
+    void display()  //method to display the values
+{
+        cout << "Negative of the number " << value;
+    }
+};
+
+int main() {
+    negative n; // object created for the class negative
+    n.accept();
+    -n; //overloaded operator is called
+    n.display();
+    return 0;
+}
+
+    
+4.) IMPLEMENTATION OF HYBRID INHERITANCE
+ #include <iostream>  
+using namespace std;  
+class books  
+{  
+public:  
+books()  
+    {  
+cout<< "This is a general knowledge related book\n";  
+    }  
+};  
+class country: public books //  class books is inherited 
+{  
+public:  
+country()  
+    {  
+cout<< "This is gives general details about countries\n";  
+    }  
+};  
+class map  
+{  
+public:  
+map()  
+    {  
+cout<< "This is gives general details about world map \n";  
+    }  
+};  
+class atlas : public country, public map //classes country and map are inherited 
+{  
+public:  
+atlas()  
+    {  
+cout<< "It is a map that gives details about countries \n";  
+    }  
+  
+};  
+int main() {  
+    atlas a;   // object created for the class atlas
+    return 0;  
+} 
+                                                  
