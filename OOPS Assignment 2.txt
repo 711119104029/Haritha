@@ -1,0 +1,314 @@
+
+                                                                       ASSINGMENT 2[02/03/2022]
+
+
+
+1.)IMPLEMENTATION OF STACK OPERATION
+
+#include<iostream>
+#include<string>
+using namespace std;
+class Stack //class stack defined
+{
+  private:
+    int top;
+  int arr[5];
+  public:
+    Stack()
+    {
+      top = -1;
+      for (int i = 0; i < 5; i++) 
+      {
+        arr[i] = 0;
+      }
+    }
+  bool isEmpty()
+  {
+    if (top == -1)
+      return true;
+    else
+      return false;
+  }
+  bool isFull() {
+    if (top == 4)
+      return true;
+    else
+      return false;
+  }
+  void push(int val)  //method to push value in stack
+  {
+    if (isFull()) 
+    {
+      cout << "\n stack overflow" ;
+    } else {
+      top++; // 1
+      arr[top] = val;
+    }
+  }
+  int pop() //method to pop value in stack
+{
+    if (isEmpty()) 
+    {
+      cout << "\n stack underflow" ;
+      return 0;
+    } 
+    else 
+    {
+      int popValue = arr[top];
+      arr[top] = 0;
+      top--;
+      return popValue;
+    }
+  }
+
+  int count() //method to count total value in stack
+  {
+    return (top + 1);
+  }
+
+  int peek(int pos) //method to peek value in stack
+  {
+    if (isEmpty()) 
+    {
+      cout << "\n stack underflow" ;
+      return 0;
+    }
+    else 
+    {
+      return arr[pos];
+    }
+  }
+  void change(int pos, int val) //method to change the value of particular value in stack
+  {
+    arr[pos] = val;
+    cout << "\n value changed at location " << pos ;
+  }
+
+  void display() //method to display value in stack
+  {
+    cout << "\n  value in the Stack are " ;
+    for (int i = 4; i >= 0; i--)
+    {
+      cout << arr[i] ;
+    }
+  }
+};
+
+int main() 
+{
+  Stack s1; //object created for class stack
+  int option, postion, value;
+
+  do {
+    cout << "\n Please select one of the operation to be performed: \n Enter 0 to exit." << endl;
+    cout << "\n 1. Push()";
+    cout << "\n 2. Pop()" ;
+    cout << "\n 3. isEmpty()" ;
+    cout << "\n 4. isFull()" ;
+    cout << "\n 5. peek()" ;
+    cout << "\n 6. count()" ;
+    cout << "\n 7. change()" ;
+    cout << "\n 8. display()" ;
+    cout << "\n 9. Clear Screen";
+    cin >> option;
+    switch (option)
+ {
+    case 0:
+      break;
+    case 1:
+      cout << "\n Enter an item to push in the stack" ;
+      cin >> value;
+      s1.push(value);
+      break;
+    case 2:
+      cout << "\n Pop Function Called - Poped Value: " << s1.pop() ;
+      break;
+    case 3:
+      if (s1.isEmpty())
+        cout << "\n Stack is Empty" ;
+      else
+        cout << "\n Stack is not Empty" ;
+      break;
+    case 4:
+      if (s1.isFull())
+        cout << "\n Stack is Full"  ;
+      else
+        cout << "\n Stack is not Full" ;
+      break;
+    case 5:
+      cout << "\n Enter position of item you want to peek: "; 
+      cin >> postion;
+      cout << "\n Peek Function Called - Value at position " << postion << " is " << s1.peek(postion) ;
+      break;
+    case 6:
+      cout << "\n Count Function Called - Number of Items in the Stack are: " << s1.count() ;
+      break;
+    case 7:
+      cout << "\n Change Function Called - " ;
+      cout << "\n Enter position of item you want to change : ";
+      cin >> postion;
+      cout << "\n Enter value of item you want to change : ";
+      cin >> value;
+      s1.change(postion, value);
+      break;
+    case 8:
+      cout << "\n Display Function Called - " ;
+      s1.display();
+      break;
+    case 9:
+      system("cls");
+      break;
+    default:
+      cout << "\n Enter Proper Option number " ;
+    }
+
+  } while (option != 0);
+
+  return 0;
+}
+
+2.)IMPLEMENTATION OF QUEUE OPERATION
+
+#include<iostream>
+using namespace std;
+class Queue  //class queue is defined
+{
+  private:
+  int front;
+  int rear;
+  int arr[10];
+  public:
+    Queue()
+    {
+      front = -1;
+      rear = -1;
+      for (int i = 0; i < 10; i++) 
+        arr[i] = 0;
+    }
+  bool isEmpty() 
+  {
+    if (front == -1 && rear == -1)
+      return true;
+    else
+      return false;
+  }
+  bool isFull() 
+  {
+    if (rear == 9)
+      return true;
+    else
+      return false;
+  }
+  void enqueue(int val) //method to enter value in queue
+  {
+    if (isFull())
+    {
+      cout << "\n The Queue is full" ;
+      return;
+    }
+    else if (isEmpty()) 
+    {
+      rear = 0;
+      front = 0;
+      arr[rear] = val;
+    }
+    else 
+    {
+      rear++;
+      arr[rear] = val;
+    }
+  }
+  int dequeue() //method to remove value in queue
+  {
+    int x = 0;
+    if (isEmpty()) 
+    {
+      cout << "\n The Queue is empty" ;
+      return x;
+    }
+    else if (rear == front) 
+    {
+      x = arr[rear];
+      rear = -1;
+      front = -1;
+      return x;
+    }
+    else
+    {
+      cout << "\n Front value: " << front;
+      x = arr[front];
+      arr[front] = 0;
+      front++;
+      return x;
+    }
+  }
+  int count() //method to count total value in queue
+  {
+    return (rear - front + 1);
+  }
+  void display() //method to display value in queue
+  {
+    cout << "The values in the Queue are - ";
+    for (int i = 0; i < 10; i++) 
+    {
+      cout << arr[i] << "  ";
+    }
+  }
+};
+int main()
+{
+  Queue q1; //object created for the class queue
+  int value, option;
+  do {
+    cout << "\n Enter the operation to be performed. \n Enter 0 to exit." ;
+    cout << "\n 1. Enqueue()" ;
+    cout << "\n 2. Dequeue()" ;
+    cout << "\n 3. isEmpty()" ;
+    cout << "\n 4. isFull()";
+    cout << "\n 5. count()" ;
+    cout << "\n 6. display()" ;
+    cout << "\n 7. Clear Screen" ;
+    cin >> option;
+    switch (option) 
+    {
+    case 0:
+      break;
+    case 1:
+      cout << "Enqueue Operation \nEnter an item to be entered in the Queue" ;
+      cin >> value;
+      q1.enqueue(value);
+      break;
+     case 2:
+      cout << "Dequeue Operation \nRemoved Value : " << q1.dequeue();
+      break;
+    case 3:
+      if (q1.isEmpty())
+        cout << "\n Queue is Empty";
+      else
+        cout << "\n Queue is not Empty" ;
+      break;
+    case 4:
+      if (q1.isFull())
+        cout << "\n Queue is Full" ;
+      else
+        cout << "\n Queue is not Full" ;
+      break;
+    case 5:
+      cout << "\n Count Operation \nCount of items in Queue : " << q1.count() ;
+      break;
+    case 6:
+      cout << "\n Display Function Called - " ;
+      q1.display();
+      break;
+    case 7:
+      system("cls");
+      break;
+    default:
+      cout << "\n Enter correct option " ;
+    }
+
+  } while (option != 0);
+return 0;
+
+}
+  
